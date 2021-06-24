@@ -24,6 +24,7 @@
         <module>microsvc-service</module>
         <module>microsvc-web</module>
         <module>start</module>
+        <module>microsvc-canal/microsvc-canal-job</module>
     </modules>
 
     <dependencyManagement>
