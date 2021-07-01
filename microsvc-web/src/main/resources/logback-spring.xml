@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration debug="false">
+  <!-- Stop the annoying output INFO at start, -->
+  <!--   see https://www.mkyong.com/logging/how-to-stop-logback-status-info-at-the-start-of-every-log/ -->
+  <statusListener class="ch.qos.logback.core.status.NopStatusListener"/>
+
+  <property name="log-dir" value="${log.dir:-/tmp}"/>
+  <property name="project-name" value="microsvc-web"/>
+  <property name="stdout-file-name" value="${project-name}-stdout.log"/>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <pattern>%d{ISO8601} %-5p %X{trace_id:--} [%t] %logger %L: %m%n</pattern>
+    </layout>
+  </appender>
+
+  <appender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${log-dir}/${stdout-file-name}</file>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+      <fileNamePattern>${log-dir}/%d{yyyy-MM-dd}-%i-${stdout-file-name}</fileNamePattern>
+      <maxFileSize>512MB</maxFileSize>
+      <maxHistory>7</maxHistory>
+      <totalSizeCap>10GB</totalSizeCap>
+    </rollingPolicy>
+
+    <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+      <layout class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.TraceIdPatternLogbackLayout">
+        <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level logger_name:%logger{36} - [%tid] - message:%msg%n</pattern>
+      </layout>
+    </encoder>
+  </appender>
+
+  <root level="INFO">
+    <appender-ref ref="STDOUT"/>
+    <appender-ref ref="RollingFile"/>
+  </root>
+
+
+
+
+</configuration>

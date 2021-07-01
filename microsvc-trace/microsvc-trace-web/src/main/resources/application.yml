@@ -1,0 +1,9 @@
+server:
+  port: 9301
+
+spring:
+  application:
+    name: microsvc-trace-web
+
+
+
