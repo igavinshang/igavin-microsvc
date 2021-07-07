@@ -5,9 +5,15 @@ microsvc-trace-web 9301
 
 -----------------------
 docker-compose
-    --monitor
+    --grafana
       --grafana & prometheus
     --skywalking
+    --elk
+      --kibana & logstash 
+    --elasticsearch
+      
+      
+
     
       
     
