@@ -4,7 +4,7 @@ services:
     image: prom/prometheus:latest
     container_name: igavin-prometheus
     volumes:
-      - ./prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
+      - ./grafana/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
     command: "--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus"
     ports:
       - 9090:9090
@@ -31,7 +31,7 @@ services:
       - “GF_INSTALL_PLUGINS=alexanderzobnin-zabbix-app”
     restart: "always"
     volumes:
-      - ../data/grafana/logs:/var/logs/grafana
+      - ./data/grafana/logs:/var/logs/grafana
       - /etc/localtime:/etc/localtime
     depends_on:
       - prometheus

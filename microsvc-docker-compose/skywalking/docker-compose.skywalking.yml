@@ -1,31 +1,10 @@
 version: '3'
 services:
-  elasticsearch:
-    image: elasticsearch:7.10.1
-    container_name: igavin-elasticsearch
-    restart: always
-    environment:
-      - discovery.type=single-node #单例模式
-      - bootstrap.memory_lock=true #锁定物理内存地址，防止es内存被交换出去，也就是避免es使用swap交换分区，频繁的交换，会导致IOPS变高
-      - "ES_JAVA_OPTS=-Xms1048m -Xmx1048m" #堆内存大小
-      - TZ=Asia/Shanghai
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - ../data/elasticsearch/data:/usr/share/elasticsearch/data
-      - ../data/elasticsearch/logs:/usr/share/elasticsearch/logs
-    networks:
-      - igavin-skywalking-net
-    ports:
-      - 9200:9200
-      - 9300:9300
-
   skywalking-oap:
     image: apache/skywalking-oap-server:8.3.0-es7
     container_name: igavin-skywalking-oap
     networks:
+      - igavin-net
       - igavin-skywalking-net
     depends_on:
       - elasticsearch
