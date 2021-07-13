@@ -5,6 +5,11 @@ server:
 spring:
   application:
     name: microsvc-web
+  cloud:
+    sentinel:
+      transport:
+        dashboard: localhost:8858
+      #eager: true
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/sc_admin?characterEncoding=UTF-8&useUnicode=true&useSSL=false
