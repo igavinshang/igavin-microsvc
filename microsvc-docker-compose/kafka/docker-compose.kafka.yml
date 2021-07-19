@@ -1,0 +1,48 @@
+version: '3'
+services:
+  zookeeper:
+    image: zookeeper
+    restart: always
+    container_name: igavin-zookeeper
+    ports:
+      - 2181:2181
+    volumes:
+      - ./data/zookeeper/data:/data
+      - ./data/zookeeper/datalog:/datalog
+    networks:
+      - igavin-net
+
+  kafka:
+    image: wurstmeister/kafka       ## 镜像
+    container_name: igavin-kafka
+    volumes:
+      - /etc/localtime:/etc/localtime ## 挂载位置（kafka镜像和宿主机器之间时间保持一直）
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: 10.201.145.164   ## 修改:宿主机IP
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181       ## 卡夫卡运行是基于zookeeper的
+      KAFKA_ADVERTISED_PORT: 9092
+      KAFKA_LOG_RETENTION_HOURS: 120
+      KAFKA_MESSAGE_MAX_BYTES: 10000000
+      KAFKA_REPLICA_FETCH_MAX_BYTES: 10000000
+      KAFKA_GROUP_MAX_SESSION_TIMEOUT_MS: 60000
+      KAFKA_NUM_PARTITIONS: 3
+      KAFKA_DELETE_RETENTION_MS: 1000
+    networks:
+      - igavin-net
+
+  kafka-manager:
+    image: sheepkiller/kafka-manager    ## 镜像：开源的web管理kafka集群的界面
+    container_name: igavin-kafka-manager
+    depends_on:
+      - kafka
+      - zookeeper
+    environment:
+      ZK_HOSTS: zookeeper:2181                   ## 修改:宿主机IP
+    ports:
+      - "9000:9000"
+    networks:
+      - igavin-net

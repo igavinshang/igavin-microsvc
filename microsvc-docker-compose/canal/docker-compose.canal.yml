@@ -1,0 +1,50 @@
+version: '3'
+services:
+  canal-server:
+    image: canal/canal-server:v1.1.3
+    container_name: igavin-canal-server
+    ports:
+      - 11111:11111
+    networks:
+      - igavin-net
+    depends_on:
+      - kafka
+      - mysql5.7
+    environment:
+      - canal.instance.mysql.slaveId=12
+      - canal.auto.scan=false
+      - canal.destinations=test
+      - canal.instance.master.address=10.201.145.164:3306
+      - canal.instance.dbUsername=canal
+      - canal.instance.dbPassword=canal123
+      - canal.serverMode=kafka
+      - canal.mq.servers=10.201.145.164:9092
+      - canal.mq.flatMessage=true
+      - canal.mq.compressionType=none
+      - canal.mq.acks=all
+      - canal.mq.partition=0
+      - canal.mq.bufferMemory=33554432
+      - canal.mq.retries=0
+      - canal.mq.topic=canal-test
+      - canal.instance.filter.regex=.*\\..*
+    volumes:
+     # - ./data/canal-server/conf:/canal-server/conf
+     # - ./data/canal-server/logs:/canal-server/logs
+      - ./data/canal-server/logs/:/home/admin/canal-server/logs/
+
+  canal_admin:
+    image: canal/canal-admin
+    container_name: igavin-canal-admin
+    networks:
+      - igavin-net
+    depends_on:
+      - canal-server
+    environment:
+      - canal.adminUser=admin
+      - canal.adminPasswd=admin123
+      - server.port=8089
+      - HOSTNAME=10.201.145.164
+    ports:
+      - 8089:8089
+    volumes:
+      - ./data/canal-admin/logs/:/home/admin/canal-admin/logs

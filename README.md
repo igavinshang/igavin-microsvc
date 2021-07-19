@@ -42,7 +42,24 @@
     
 #### microsvc-web
     actuator
+      -- yml配置-运行监控指标写入 prometueus
     prometueus & grafana
+      -- maven引入 & yml配置
     sentinel
+      -- maven引入
+    shell
+      -- skywalking启动
     
+----------------------
+TODO
+microsvc-canal 
+    --接收binlog消息
+    --同步到mysql
+    --同步到elasticsearch
     
+microsvc-es
+    --索引自动构建
+    --索引同步
+    --索引查询
+    
+

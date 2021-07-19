@@ -6,22 +6,20 @@ spring:
   application:
     name: microsvc-canal-job
   kafka:
-    bootstrap-servers: 10.15.5.4:9092 10.15.5.7:9092 10.15.4.182:9092
+    bootstrap-servers: localhost:9092 #souke集群 10.15.5.4:9092 10.15.5.7:9092 10.15.4.182:9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
     consumer:
-      #group-id: xkt-index-consumer
       enable-auto-commit: false
-      #      auto-commit-interval: 1000
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       auto-offset-reset: earliest
       max-poll-records: 1
-    properties:
-      sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="r30" password="bhaCyq";
-      sasl.mechanism: PLAIN
-      security.protocol: SASL_PLAINTEXT
+#    properties:
+#      sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="r30" password="bhaCyq";
+#      sasl.mechanism: PLAIN
+#      security.protocol: SASL_PLAINTEXT
     listener:
       ack-mode: manual
 
@@ -32,6 +30,9 @@ spring:
     material:
       groupid: group-canal-material
       topic: p1-material-mysql-canal
+    igavin:
+      groupid: group-canal-igavin
+      topic: igavin-canal-test
 
 
 
