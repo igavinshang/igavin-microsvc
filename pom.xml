@@ -26,6 +26,7 @@
         <module>start</module>
         <module>microsvc-canal/microsvc-canal-job</module>
         <module>microsvc-trace/microsvc-trace-web</module>
+        <module>microsvc-elasticsearch</module>
     </modules>
 
     <dependencyManagement>
@@ -66,6 +67,16 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>5.1.39</version>
+            </dependency>
+            <dependency>
+                <groupId>org.elasticsearch</groupId>
+                <artifactId>elasticsearch</artifactId>
+                <version>7.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>elasticsearch-rest-high-level-client</artifactId>
+                <version>7.0.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

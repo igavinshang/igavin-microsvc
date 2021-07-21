@@ -35,5 +35,14 @@ spring:
       topic: igavin-canal-test
 
 
+microsvc:
+  data:
+    elasticsearch:
+      cluster-name: elasticsearch
+      cluster-nodes: localhost:9200
+      index:
+        number-of-replicas: 0
+        number-of-shards: 3
+
 
 
