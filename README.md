@@ -5,6 +5,7 @@
 - microsvc-web 9101
 - microsvc-canal-job 9201
 - microsvc-trace-web 9301
+- microsvc-zookeeper 9401
 
 -----------------------
 ### 基础建设
@@ -49,17 +50,24 @@
       -- maven引入
     shell
       -- skywalking启动
-    
+#### microsvc-zookeeper
+    Apache Curator zookeeper客户端
+    Apache Curator是为ZooKeeper开发的一套Java客户端类库
 ----------------------
-TODO
-microsvc-canal 
-    --接收binlog消息
-    --同步到mysql
-    --同步到elasticsearch
+### 场景
+#### microsvc-canal 
+    -- 接收binlog消息
+    -- 同步到mysql
+    -- 同步到elasticsearch
     
-microsvc-es
-    --索引自动构建
-    --索引同步
-    --索引查询
+ 
+#### microsvc-elasticsearch
+    -- 索引构建
+    -- 索引CURD
     
+#### microsvc-zookeeper
+    -- 分布式锁实现
+
+
+
 

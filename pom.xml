@@ -27,6 +27,7 @@
         <module>microsvc-canal/microsvc-canal-job</module>
         <module>microsvc-trace/microsvc-trace-web</module>
         <module>microsvc-elasticsearch</module>
+        <module>microsvc-zookeeper</module>
     </modules>
 
     <dependencyManagement>
@@ -77,6 +78,11 @@
                 <groupId>org.elasticsearch.client</groupId>
                 <artifactId>elasticsearch-rest-high-level-client</artifactId>
                 <version>7.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>5.4.5</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
