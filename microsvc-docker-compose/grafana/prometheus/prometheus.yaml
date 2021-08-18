@@ -36,3 +36,8 @@ scrape_configs:
     scrape_interval: 5s # 间隔
     static_configs:
       - targets: ['10.201.145.164:9101'] # 164是本机ip，配置localhost访问不到，可能应为prometheus是docker部署，localhost无效
+
+  # 采集kafka指标
+  - job_name: 'igavin-kafka-exporter'
+    static_configs:
+      - targets: ['10.201.145.164:9308']

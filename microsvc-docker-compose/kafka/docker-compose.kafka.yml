@@ -46,3 +46,16 @@ services:
       - "9000:9000"
     networks:
       - igavin-net
+
+  kafka-exporter:
+    image: danielqsj/kafka-exporter    ## 镜像：Kafka exporter for Prometheus
+    container_name: igavin-kafka-exporter
+    depends_on:
+      - kafka
+      - zookeeper
+    environment:
+      - kafka.server=kafka:9092
+    ports:
+      - "9308:9308"
+    networks:
+      - igavin-net

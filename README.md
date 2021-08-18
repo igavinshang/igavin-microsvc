@@ -12,16 +12,30 @@
 
 ##### microsvc-docker-compose
 	--elasticsearch
+	--mysql
 
+    --canal
+      --README.md
+      
     --elk
       --kibana 
 	  --logstash
 	  --filebeat
 	  --elasticsearch
+	  --README.md
 
     --grafana
       --grafana
 	  --prometheus
+	    --yaml
+	        --kafka-exporter
+	        --microsvc-web
+	  
+	--kafka
+	  --zookeeper
+	  --kafka
+	  --kafka-manager
+	  --kafka-exporter  #Kafka exporter for Prometheus
 
     --skywalking
 	  --skywalking-oap-server
@@ -29,6 +43,8 @@
       --elasticsearch
 
     --sentinel
+    
+
  
         
 -----------------------
