@@ -1,0 +1,10 @@
+version: '3'
+services:
+  microsvc-helloworld:
+    image: "igavin/microsvc-helloworld:v1"
+    container_name: "igavin-microsvc-helloworld"
+    restart: always
+    volumes:
+      - ../data/log/:/tmp
+    ports:
+      - "18080:18080"

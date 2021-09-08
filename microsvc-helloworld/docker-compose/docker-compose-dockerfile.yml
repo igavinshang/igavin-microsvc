@@ -1,0 +1,13 @@
+version: '3'
+services:
+  microsvc-helloworld:
+    build:
+      context: ../docker #指定docker build 上下文
+      dockerfile: ../docker/Dockerfile
+    image: "igavin/microsvc-helloworld:v1"
+    container_name: "igavin-microsvc-helloworld"
+    volumes:
+    - ../data/log/:/tmp
+    restart: always
+    ports:
+      - "18080:18080"

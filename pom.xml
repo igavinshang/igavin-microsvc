@@ -28,6 +28,7 @@
         <module>microsvc-trace/microsvc-trace-web</module>
         <module>microsvc-elasticsearch</module>
         <module>microsvc-zookeeper</module>
+        <module>microsvc-helloworld</module>
     </modules>
 
     <dependencyManagement>
