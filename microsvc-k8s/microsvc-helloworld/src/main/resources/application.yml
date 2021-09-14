@@ -1,18 +1,12 @@
 server:
-  port: 9101
-
+  port: 18081
 
 spring:
   application:
-    name: microsvc-web
-  cloud:
-    sentinel:
-      transport:
-        dashboard: localhost:8858
-      #eager: true
+    name: microsvc-app
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mysql?characterEncoding=UTF-8&useUnicode=true&useSSL=false
+    url: jdbc:mysql://localhost:3306/sc_admin?characterEncoding=UTF-8&useUnicode=true&useSSL=false
     username: root
     password: root123
 

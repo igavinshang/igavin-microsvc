@@ -4,16 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.igavin.microsvc.dao.mapper.UserMapper">
 
-    <select id="getByName" parameterType="string" resultType="org.igavin.microsvc.dao.dataobject.UserDO">
-        SELECT id,name,mobile
-        FROM users
-        WHERE name = #{value}
-    </select>
-
-    <select id="getById" parameterType="long" resultType="org.igavin.microsvc.dao.dataobject.UserDO">
-        SELECT id,name,mobile
-        FROM users
-        WHERE id = #{value}
+    <select id="getTopOne" parameterType="string" resultType="string">
+        SELECT User
+        FROM user
+        limit 1
     </select>
 
 </mapper>

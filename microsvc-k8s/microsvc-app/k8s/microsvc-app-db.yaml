@@ -1,0 +1,66 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ns-microsvc-app
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microsvc-mysql
+  namespace: ns-microsvc-app
+  labels:
+    app: mysql
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: microsvc-mysql
+          image: mysql:5.7
+          imagePullPolicy: IfNotPresent
+          args:  # 新版本镜像有更新，需要使用下面的认证插件环境变量配置才会生效
+            - --default_authentication_plugin=mysql_native_password
+            - --character-set-server=utf8mb4
+            - --collation-server=utf8mb4_unicode_ci
+          ports:
+            - containerPort: 3306
+              name: dbport
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: root123
+            - name: MYSQL_DATABASE
+              value: microsvc-dev
+            - name: MYSQL_USER
+              value: microsvc
+            - name: MYSQL_PASSWORD
+              value: microsvc123
+          volumeMounts:
+            - name: db
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: db
+          hostPath:
+            path: /Users/igavinshang/Documents/igavinshang.proj/igavin-microsvc/microsvc-docker-compose/data/mysql
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: microsvc-mysql
+  namespace: ns-microsvc-app
+spec:
+  selector:
+    app: mysql
+  ports:
+    - name: mysqlport
+      protocol: TCP
+      port: 3306
+      targetPort: dbport

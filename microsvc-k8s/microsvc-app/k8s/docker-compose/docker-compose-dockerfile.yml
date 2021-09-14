@@ -1,0 +1,16 @@
+version: '3'
+services:
+  microsvc-app:
+    build:
+      context: ../docker #指定docker build 上下文
+      dockerfile: ../docker/Dockerfile
+    image: "igavin/microsvc-app:v1"
+    container_name: "igavin-microsvc-app"
+    environment:
+      #ip替换成主机ip
+      spring.datasource.url: jdbc:mysql://192.168.1.9:3306/mysql?characterEncoding=UTF-8&useUnicode=true&useSSL=false
+    volumes:
+    - ../data/log/:/tmp
+    restart: always
+    ports:
+      - "18081:18081"
