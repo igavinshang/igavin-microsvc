@@ -7,7 +7,5 @@
 ------------
 
 TODO 
-通过docker-compose没有成功
 日志路径有问题
-db查询出来的User 为什么是canal
 

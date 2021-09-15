@@ -29,10 +29,19 @@ spec:
               name: appport
           env:
             - name: log.dir
-              value: ../data/log
+              value: /k8s-pod-log
             - name: spring.datasource.url
               # 这里的ip使用mysql的clusterIP
               value: jdbc:mysql://10.107.45.11:3306/mysql?characterEncoding=UTF-8&useUnicode=true&useSSL=false
+          volumeMounts:
+            - name: log-dir
+              mountPath: /k8s-pod-log
+
+      volumes:
+        - name: log-dir
+          hostPath:
+            path: /tmp/k8s-pod-log
+
 
 ---
 apiVersion: v1
