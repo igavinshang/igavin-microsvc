@@ -10,12 +10,12 @@ spec:
       port: 80   #service端口为80
       targetPort: 80 #容器端口为80
       protocol: TCP
-      nodePort: 30080
+      nodePort: 32080
     - name: https
       port: 443 #service 端口为443
       targetPort: 443 #容器端口为443
       protocol: TCP
-      nodePort: 30443
+      nodePort: 32443
   selector:
-    app: ingress-nginx
-    
+    app.kubernetes.io/part-of: ingress-nginx
+

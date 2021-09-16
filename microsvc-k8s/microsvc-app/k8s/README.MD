@@ -6,6 +6,7 @@
 
 ------------
 
-TODO 
-日志路径有问题
-
+将microsvc-app通过ingress暴露给外部使用
+安装ingress-nginx通过ingress-nginx-mandatory.yaml
+然后通过service-nodeport.yaml将ingress暴露给外部
+然后写microsvc-app-ingress.yaml实现ingress路由规则

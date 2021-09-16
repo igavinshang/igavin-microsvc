@@ -1,0 +1,17 @@
+# just example, not tested
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  namespace: ns-microsvc-app
+  name: microsvc-ingress
+spec:
+  rules:
+    - host: app.igavin.org
+      http:
+        paths:
+        - path:
+          backend:
+            serviceName: microsvc-app
+            servicePort: 18081
