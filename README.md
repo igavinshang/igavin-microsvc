@@ -42,6 +42,8 @@
       --skywalking-ui
       --elasticsearch
 
+	--xxl-job
+
     --sentinel
     
 
@@ -64,6 +66,8 @@
       -- maven引入 & yml配置
     sentinel
       -- maven引入
+      -- nacos持久化存储规则
+      -- 项目接入流程参照/microsvc-web/README-microsvc-web-sentinel.md
     shell
       -- skywalking启动
 #### microsvc-zookeeper
@@ -84,6 +88,19 @@
 #### microsvc-zookeeper
     -- 分布式锁实现
 
+---------------------
+### K8s
 
+#### docker-desktop-k8s-setup
+	--k8s mac本地运行环境安装脚本
 
+#### microsvc-k8s/microsvc-helloworld
+	--k8s-helloworld
+
+#### microsvc-k8s/microsvc-app
+	--Namespace
+	--Deployment
+	--Service
+	--Ingress
+	
 

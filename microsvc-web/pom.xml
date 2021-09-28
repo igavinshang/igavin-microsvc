@@ -30,6 +30,10 @@
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-datasource-nacos</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.igavin</groupId>
             <artifactId>microsvc-api</artifactId>
             <version>${project.version}</version>

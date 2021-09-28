@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import org.igavin.microsvc.api.UserService;
 
+//此处不需要添加任何资源埋点，在默认情况下Sentinel Starter会对所有HTTP请求进行限流
 @RestController
 public class UserController {
 
