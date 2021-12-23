@@ -1,10 +1,10 @@
-version: '3.0'
+version: '3'
 services:
   mysql3307:
     image: mysql:5.7
     ports:
       - "3307:3306"
-    container_name: igavin-mysql-nacos-3307
+    container_name: igavin-mysql-3307
     environment:
       MYSQL_ROOT_PASSWORD: 123456
     volumes:
@@ -12,7 +12,8 @@ services:
     networks:
       - igavin-nacos-net
 
-
+# 指定一个已经存在的网络，external:true
+# docker network create igavin-nacos-net 创建自定义网络
 networks:
   igavin-nacos-net:
-    external: false
+    external: true

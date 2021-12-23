@@ -1,0 +1,6 @@
+version: '3'
+
+networks:
+  igavin-net:
+    external: false
+

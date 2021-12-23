@@ -2,7 +2,7 @@ version: "3"
 services:
   nacosstandalone:
     image: nacos/nacos-server:latest
-    container_name: nacos-standalone-mysql
+    container_name: nacos
 
     volumes:
       - "./data/nacos/logs/:/home/nacos/logs/"
@@ -10,7 +10,7 @@ services:
     environment:
       - MODE=standalone
       - SPRING_DATASOURCE_PLATFORM=mysql
-      - MYSQL_SERVICE_HOST=igavin-mysql-nacos-3307
+      - MYSQL_SERVICE_HOST=igavin-mysql-3307
       - MYSQL_SERVICE_PORT=3306
       - MYSQL_SERVICE_DB_NAME=nacos
       - MYSQL_SERVICE_USER=root
@@ -24,4 +24,4 @@ services:
 
 networks:
   igavin-nacos-net:
-    external: false
+    external: true
