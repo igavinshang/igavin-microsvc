@@ -46,6 +46,8 @@
 
     --sentinel
     
+    --nacos
+    
 
  
         

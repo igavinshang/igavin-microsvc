@@ -17,18 +17,11 @@
     </properties>
 
     <modules>
-        <module>microsvc-api</module>
-        <module>microsvc-dao</module>
-        <module>microsvc-manager</module>
-        <module>microsvc-service</module>
-        <module>microsvc-web</module>
-        <module>start</module>
-        <module>microsvc-canal/microsvc-canal-job</module>
-        <module>microsvc-trace/microsvc-trace-web</module>
-        <module>microsvc-elasticsearch</module>
-        <module>microsvc-zookeeper</module>
+
         <module>microsvc-k8s/microsvc-helloworld</module>
         <module>microsvc-k8s/microsvc-app</module>
+        <module>microsvc-start</module>
+        <module>microsvc-ware</module>
     </modules>
 
     <dependencyManagement>

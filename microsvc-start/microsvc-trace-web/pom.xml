@@ -4,9 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.igavin</groupId>
-        <artifactId>microsvc</artifactId>
+        <artifactId>microsvc-start</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../../pom.xml</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>microsvc-trace-web</artifactId>
     <version>0.0.1-SNAPSHOT</version>
