@@ -1,0 +1,21 @@
+## Request timeout
+# timeout: 5s
+
+## Customizable templates path
+# templates:
+#   - contrib/templates/legacy/template.tmpl
+
+## You can also override default template using `default_message`
+## The following example to use the 'legacy' template from v0.3.0
+# default_message:
+#   title: '{{ template "legacy.title" . }}'
+#   text: '{{ template "legacy.content" . }}'
+
+## Targets, previously was known as "profiles"
+targets:
+  webhook1:
+    url: https://oapi.dingtalk.com/robot/send?access_token=15fbe31a57e9c8a9e98c8e84db6bb01ac22f0c9a16af072a9c69468c8f83cfa2
+    message:
+      # Use legacy template
+      title: '{{ template "ding.link.title" . }}'
+      text: '{{ template "ding.link.content" . }}'

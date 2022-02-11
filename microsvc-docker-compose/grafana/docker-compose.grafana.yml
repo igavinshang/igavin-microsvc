@@ -1,26 +1,5 @@
 version: "3"
 services:
-  prometheus:
-    image: prom/prometheus:latest
-    container_name: igavin-prometheus
-    volumes:
-      - ./grafana/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
-    command: "--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus"
-    ports:
-      - 9090:9090
-    depends_on:
-      - node-exporter
-    networks:
-      - igavin-monitor
-
-  node-exporter:
-    image: prom/node-exporter:latest
-    container_name: igavin-node-exporter
-    ports:
-      - "9100:9100"
-    networks:
-      - igavin-monitor
-
   grafana:
     image: grafana/grafana
     container_name: igavin-grafana
@@ -37,6 +16,67 @@ services:
       - prometheus
     networks:
       - igavin-monitor
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: igavin-prometheus
+    volumes:
+      - ./grafana/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
+      - ./grafana/prometheus/alertmanager-rule.yml:/etc/prometheus/alertmanager-rule.yml
+    command: "--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus"
+    ports:
+      - 9090:9090
+    depends_on:
+      - node-exporter
+      - cadvisor
+      - prometheus-webhook-alert
+    networks:
+      - igavin-monitor
+
+  prometheus-webhook-alert:
+    image: timonwong/prometheus-webhook-dingtalk
+    container_name: igavin-prometheus-webhook-alertmanagers
+    hostname: webhook-alertmanagers
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - ./grafana/alertmanager/dingtalk-config.yml:/etc/prometheus-webhook-dingtalk/config.yml
+    ports:
+      - "8060:8060"
+    networks:
+      - igavin-monitor
+  alertmanager:
+    image: prom/alertmanager
+    container_name: igavin-alertmanager
+    hostname: alertmanager
+    volumes:
+      - ./grafana/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
+      - /etc/localtime:/etc/localtime
+    ports:
+      - "9093:9093"
+    networks:
+      - igavin-monitor
+  cadvisor:
+    image: google/cadvisor:latest
+    container_name: igavin-cadvisor
+    hostname: cadvisor
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /etc/localtime:/etc/localtime
+    ports:
+      - "8080:8080"
+    networks:
+      - igavin-monitor
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: igavin-node-exporter
+    ports:
+      - "9100:9100"
+    networks:
+      - igavin-monitor
+
 
 networks:
   igavin-monitor:

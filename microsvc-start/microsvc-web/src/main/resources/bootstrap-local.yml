@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://10.201.145.164:3306/mysql?characterEncoding=UTF-8&useUnicode=true&useSSL=false
+    username: root
+    password: root123
+
+
+mybatis:
+  mapper-locations:
+    - classpath*:mapper/*/*.xml
+    - classpath*:mapper/*.xml
+
+management:
+  endpoint:
+    health:
+      show-components: always #对所有用户暴露详细信息
+  endpoints:
+    web:
+      exposure:
+        include: info, health, metrics,prometheus,heapdump,threaddump,loggers
+info:
+  app:
+    name: microsvc-web

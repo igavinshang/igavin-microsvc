@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: local
   cloud:
     nacos:
       server-addr: 172.24.29.87:8848

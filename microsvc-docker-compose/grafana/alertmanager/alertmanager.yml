@@ -1,0 +1,14 @@
+global:
+  resolve_timeout: 5m
+route: #设置报警的分发策略，通过route实现告警的分配，所有的报警都会发送到mail这个接收器中
+  group_by: ['alertname'] #采用哪个标签进行分组
+  group_interval: 5m #上一组报警与下一组报警的间隔时间为10秒
+  group_wait: 10s #分组等待的时间为10秒，收到报警后并不是马上发送出去，看看还有没有alertname这个标签的报警发过来，如果有的话，一起发出报警
+  repeat_interval: 5m #重复报警时间
+  receiver: webhook1
+
+receivers:
+  - name: 'webhook1'
+    webhook_configs:
+      - url: http://10.201.145.164:8060/dingtalk/webhook1/send
+        send_resolved: true

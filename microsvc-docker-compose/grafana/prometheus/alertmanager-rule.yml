@@ -1,0 +1,28 @@
+groups:
+  - name: Warning
+    rules:
+      - alert: Node-UP
+        expr: up{job='node-exporter'} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "[alert]{{$labels.instance}}: 服务宕机"
+          description: "[alert]{{$labels.instance}}: 服务中断超过1分钟"
+
+      - alert: svc-down # 服务是否下线
+        expr: sum(up{job="microsvc-web"}) == 0
+        for: 1m #有设置for，经历evaluation_interval间隔后由inactive转换成pending，再经历evaluation_interval间隔后由pending转换成firing， 因此至少需要2倍的evaluation_interval ，告警才会触发
+        labels:
+          severity: critical
+        annotations:
+          summary: "[alert]服务已下线，请检查！！"
+
+      - alert: order-error-increase # 1分钟内下单失败数>3
+        expr: increase(requests_error_total{job="microsvc-web"}[1m]) > 3
+        #for: 1m #没有设置for，达到满足告警阈值的时候则是立即触发firing
+        labels:
+          severity: warning
+        annotations:
+          summary: "[alert]服务响应异常！！"
+          description: "[alert]1分钟错误率已经超过3个 (当前值: {{ $value }} ！！！"
