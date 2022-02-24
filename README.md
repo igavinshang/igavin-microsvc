@@ -11,21 +11,22 @@
 ### 基础建设
 
 ##### microsvc-docker-compose
-	--elasticsearch
-	--mysql
-
-    --canal
-      --README.md
-      
+   
     --elk
       --kibana 
 	  --logstash
 	  --filebeat
 	  --elasticsearch
 	  --README.md
+	  
+    --skywalking
+	  --skywalking-oap-server
+      --skywalking-ui
+      --elasticsearch
 
     --grafana
       --grafana
+      --alertmanager
 	  --prometheus
 	    --yaml
 	        --kafka-exporter
@@ -37,19 +38,16 @@
 	  --kafka-manager
 	  --kafka-exporter  #Kafka exporter for Prometheus
 
-    --skywalking
-	  --skywalking-oap-server
-      --skywalking-ui
-      --elasticsearch
-
-	--xxl-job
-
     --sentinel
-    
     --nacos
-    
+    --mysql
+    --seata
+    --xxl-job
+	--elasticsearch
+    --canal
+      --README.md    
 
- 
+   
         
 -----------------------
 ### 项目技术栈
@@ -77,7 +75,7 @@
     Apache Curator是为ZooKeeper开发的一套Java客户端类库
 ----------------------
 ### 场景
-#### microsvc-canal 
+#### microsvc-canal-job
     -- 接收binlog消息
     -- 同步到mysql
     -- 同步到elasticsearch
