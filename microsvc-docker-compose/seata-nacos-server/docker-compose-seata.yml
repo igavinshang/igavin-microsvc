@@ -1,0 +1,17 @@
+version: "3.1"
+services:
+  seata-server:
+    image: seataio/seata-server:1.4.2
+    hostname: seata-server
+    ports:
+      - "8091:8091"
+    environment:
+      # 指定seata服务启动端口
+      - SEATA_PORT=8091
+      # 注册到nacos上的ip。客户端将通过该ip访问seata服务。
+      # 注意公网ip和内网ip的差异。
+      - SEATA_IP=10.201.145.164
+      - SEATA_CONFIG_NAME=file:/root/seata-config/registry
+    volumes:
+      # 因为registry.conf中是nacos配置中心，只需要把registry.conf放到./seata-server/config文件夹中
+      - "./seata-nacos-server/config:/root/seata-config"
