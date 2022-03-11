@@ -10,15 +10,25 @@ spring:
       transport:
         dashboard: localhost:8858
       datasource:
-        ds:
+        flow:
           nacos:
             server-addr: 172.24.29.87:8848
             username: nacos
             password: nacos
             groupId: DEFAULT_GROUP
-            dataId: microsvc-web-sentinel
+            dataId: microsvc-web-sentinel-flow-rules
             namespace: dev_igavin
             rule-type: flow
+        degrade:
+          nacos:
+            server-addr: 172.24.29.87:8848
+            username: nacos
+            password: nacos
+            groupId: DEFAULT_GROUP
+            dataId: microsvc-web-sentinel-degrade-rules
+            namespace: dev_igavin
+            rule-type: degrade
+
       #eager: true
 
 

@@ -20,19 +20,28 @@ spring:
       transport:
         dashboard: localhost:8858
       datasource:
-        ds:
+        flow:
           nacos:
             server-addr: 172.24.29.87:8848
             username: nacos
             password: nacos
             groupId: DEFAULT_GROUP
-            dataId: microsvc-web-sentinel
+            dataId: microsvc-web-sentinel-flow-rules
             namespace: dev_igavin
             rule-type: flow
+        degrade:
+          nacos:
+            server-addr: 172.24.29.87:8848
+            username: nacos
+            password: nacos
+            groupId: DEFAULT_GROUP
+            dataId: microsvc-web-sentinel-degrade-rules
+            namespace: dev_igavin
+            rule-type: degrade
 ```
 
-4. **在nacos中新增限流规则配置，新建配置，选择json格式，Data ID 选择上面yaml配置中的dataId=microsvc-web-sentinel**
-```
+4. **在nacos中分别新增限流&熔断降级规则配置，新建配置，选择json格式，Data ID 选择上面yaml配置中的dataId={根据yml中配置dataId命名} **
+```限流
 [
   {
     "resource": "helloworld",
@@ -63,6 +72,22 @@ spring:
   }
 ]
 ```
+
+```降级
+
+[
+    {
+        "resource": "helloMethod",
+        "grade": 2,
+        "count": 1,
+        "timeWindow": 15,
+        "minRequestAmount": 1,
+        "statIntervalMs": 1000
+    }
+]
+
+```
+
 5. **添加SentinelController 实验代码 ，包含资源名，限流，降级函数等**
 
  ```
