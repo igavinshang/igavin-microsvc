@@ -74,10 +74,25 @@ spring:
 ```
 
 ```降级
-
 [
     {
-        "resource": "helloMethod",
+        "resource": "hello",
+        "grade": 2,
+        "count": 1,
+        "timeWindow": 15,
+        "minRequestAmount": 1,
+        "statIntervalMs": 1000
+    },
+    {
+        "resource": "echoHello",
+        "grade": 2,
+        "count": 1,
+        "timeWindow": 15,
+        "minRequestAmount": 1,
+        "statIntervalMs": 1000
+    },
+    {
+        "resource": "echoSayHello",
         "grade": 2,
         "count": 1,
         "timeWindow": 15,
@@ -85,7 +100,6 @@ spring:
         "statIntervalMs": 1000
     }
 ]
-
 ```
 
 5. **添加SentinelController 实验代码 ，包含资源名，限流，降级函数等**
