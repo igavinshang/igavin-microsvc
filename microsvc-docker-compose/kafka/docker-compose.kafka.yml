@@ -7,10 +7,9 @@ services:
     ports:
       - 2181:2181
     volumes:
-      - ./data/zookeeper/data:/data
-      - ./data/zookeeper/datalog:/datalog
-    networks:
-      - igavin-net
+      - ../data/zookeeper/data:/data
+      - ../data/zookeeper/datalog:/datalog
+  
 
   kafka:
     image: wurstmeister/kafka       ## 镜像
@@ -31,8 +30,7 @@ services:
       KAFKA_GROUP_MAX_SESSION_TIMEOUT_MS: 60000
       KAFKA_NUM_PARTITIONS: 3
       KAFKA_DELETE_RETENTION_MS: 1000
-    networks:
-      - igavin-net
+    
 
   kafka-manager:
     image: sheepkiller/kafka-manager    ## 镜像：开源的web管理kafka集群的界面
@@ -44,8 +42,7 @@ services:
       ZK_HOSTS: zookeeper:2181                   ## 修改:宿主机IP
     ports:
       - "9000:9000"
-    networks:
-      - igavin-net
+    
 
   kafka-exporter:
     image: danielqsj/kafka-exporter    ## 镜像：Kafka exporter for Prometheus
@@ -57,5 +54,4 @@ services:
       - kafka.server=kafka:9092
     ports:
       - "9308:9308"
-    networks:
-      - igavin-net
+    

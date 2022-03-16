@@ -11,13 +11,12 @@ services:
       # es地址
       ELASTICSEARCH_HOSTS: "http://elasticsearch:9200"
     volumes:
-      - ./data/kibana/logs:/var/logs/kibana
+      - ../data/kibana/logs:/var/logs/kibana
     ports:
       - 5601:5601
     depends_on:
       - elasticsearch
-    networks:
-      - igavin-net
+
 
   logstash:
     image: docker.elastic.co/logstash/logstash:7.7.0
@@ -30,5 +29,4 @@ services:
       - 5044:5044
     depends_on:
       - elasticsearch
-    networks:
-      - igavin-net
+

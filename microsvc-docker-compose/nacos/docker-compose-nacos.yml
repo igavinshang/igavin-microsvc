@@ -5,14 +5,14 @@ services:
     container_name: nacos
 
     volumes:
-      - "./data/nacos/logs/:/home/nacos/logs/"
-      - "./data/nacos/data/:/home/nacos/data/"
+      - "../data/nacos/logs/:/home/nacos/logs/"
+      - "../data/nacos/data/:/home/nacos/data/"
     environment:
       - MODE=standalone
       - SPRING_DATASOURCE_PLATFORM=mysql
       - MYSQL_SERVICE_HOST=igavin-mysql-3307
       - MYSQL_SERVICE_PORT=3306
-      - MYSQL_SERVICE_DB_NAME=nacos
+      - MYSQL_SERVICE_DB_NAME=nacos_config
       - MYSQL_SERVICE_USER=root
       - MYSQL_SERVICE_PASSWORD=123456
       - SET_CONTAINER_TIMEZONE=true

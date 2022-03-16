@@ -3,9 +3,6 @@ services:
   skywalking-oap:
     image: apache/skywalking-oap-server:8.3.0-es7
     container_name: igavin-skywalking-oap
-    networks:
-      - igavin-net
-      - igavin-skywalking-net
     depends_on:
       - elasticsearch
     links:
@@ -22,8 +19,6 @@ services:
   skywalking-ui:
     image: apache/skywalking-ui:8.3.0
     container_name: igavin-skywalking-ui
-    networks:
-      - igavin-skywalking-net
     depends_on:
       - skywalking-oap
     links:
@@ -34,8 +29,3 @@ services:
     environment:
       TZ: Asia/Shanghai
       SW_OAP_ADDRESS: skywalking-oap:12800
-
-
-networks:
-  igavin-skywalking-net:
-    external: false

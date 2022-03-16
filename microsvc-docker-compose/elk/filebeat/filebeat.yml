@@ -25,7 +25,7 @@ filebeat.inputs:
 
   # Paths that should be crawled and fetched. Glob based paths.
   paths:
-    - /Users/igavinshang/Documents/ixdf.dev.logs/*.log
+    - /Users/igavinshang/Documents/ixdf.dev.logs/*.log # 可替换成自己本地地址
     #- c:\programdata\elasticsearch\logs\*
 
   # Exclude lines. A list of regular expressions to match. It drops the lines that are

@@ -25,6 +25,8 @@
 
 #####  filebeat 安装通过brew安装启动流程
 
+filebeat.yml文件内容拷贝./filebeat/filebeat.yml
+
 ```
 igavinshang@igavin-macpro filebeat % brew install elastic/tap/filebeat-full
 
@@ -39,3 +41,6 @@ igavinshang@igavin-macpro filebeat % vi filebeat.yml
 igavinshang@igavin-macpro filebeat % /usr/local/bin/filebeat -e -c filebeat.yml 
 
 ```
+
+#### 启动地址
+http://localhost:5601/app/kibana

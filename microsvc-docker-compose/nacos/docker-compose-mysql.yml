@@ -2,13 +2,21 @@ version: '3'
 services:
   mysql3307:
     image: mysql:5.7
+    restart: always
     ports:
       - "3307:3306"
     container_name: igavin-mysql-3307
     environment:
+      MYSQL_DATABASE: nacos_config
       MYSQL_ROOT_PASSWORD: 123456
     volumes:
-      - "./data/mysql3307/data:/var/lib/mysql"
+      - "../data/mysql3307/data:/var/lib/mysql"
+      # 启动目录在microsvc-docker-compose，所以这里的路径为 ./nacos/init
+      # 说明：将sql文件放到容器中的 /docker-entrypoint-initdb.d/ 目录，就会在mysql第一次启动时执行。
+      # 之后重启容器不会重复执行！如果此目录放置多个sql文件，它执行时是没有顺序的。
+      # 因此，这个目录只放一个init.sql，专门用来控制执行sql顺序的。
+      - "./nacos/init:/docker-entrypoint-initdb.d/"
+
     networks:
       - igavin-nacos-net
 
