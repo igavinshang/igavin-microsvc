@@ -1,5 +1,22 @@
 # 工程简介
 
+### about
+```
+基于docker,docker-compose部署目前微服务所需主流基础服务，包括 
+日志收集组件elk(elasticsearch & logstash & kibana & filebeat),
+链路追踪skywalking,
+项目可视化组件【收集/监控/告警】（grafana & prometheus & alertmanager），
+消息中间件kafka（kafka & kafka-manager），
+分布式基础组件zookeeper，
+注册与配置中心nacos，
+搜索引擎中间件elasticsearch，
+流量限流熔断sentinel，
+分布式事务seata，
+mysql数据同步canal，
+任务调度xxl-job。
+使用spring cloud最简单话实现组件使用示例。持续中...
+```
+
 ### 项目
 
 - microsvc-web 9101
