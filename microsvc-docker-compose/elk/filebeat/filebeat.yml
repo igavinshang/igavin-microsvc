@@ -22,11 +22,17 @@ filebeat.inputs:
 
   # Change to true to enable this input configuration.
   enabled: true
-
+  tags: ["info"]
   # Paths that should be crawled and fetched. Glob based paths.
   paths:
-    - /Users/igavinshang/Documents/ixdf.dev.logs/*.log # 可替换成自己本地地址
+    - /Users/igavinshang/Documents/ixdf.dev.logs/info*.log # 可替换成自己本地地址
     #- c:\programdata\elasticsearch\logs\*
+
+- type: log
+  enabled: true
+  tags: ["error"]
+  paths:
+    - /Users/igavinshang/Documents/ixdf.dev.logs/error*.log # 可替换成自己本地地址
 
   # Exclude lines. A list of regular expressions to match. It drops the lines that are
   # matching any regular expression from the list.

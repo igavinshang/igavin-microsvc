@@ -39,7 +39,7 @@ igavinshang@igavin-macpro filebeat % ls
 filebeat.yml	modules.d
 igavinshang@igavin-macpro filebeat % vi filebeat.yml 
 igavinshang@igavin-macpro filebeat % /usr/local/bin/filebeat -e -c filebeat.yml 
-
+    
 ```
 
 #### 启动地址
