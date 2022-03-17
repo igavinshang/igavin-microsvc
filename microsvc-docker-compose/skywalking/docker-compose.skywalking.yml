@@ -7,7 +7,6 @@ services:
       - elasticsearch
     links:
       - elasticsearch
-    restart: always
     ports:
       - 11800:11800
       - 12800:12800
@@ -23,7 +22,6 @@ services:
       - skywalking-oap
     links:
       - skywalking-oap
-    restart: always
     ports:
       - 18080:8080
     environment:

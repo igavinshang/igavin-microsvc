@@ -3,7 +3,6 @@ services:
   kibana:
     image: docker.elastic.co/kibana/kibana:7.10.1
     container_name: igavin-kibana
-    restart: always
     environment:
       # 名称，随便起
       SERVER_NAME: kibana
@@ -21,7 +20,6 @@ services:
   logstash:
     image: docker.elastic.co/logstash/logstash:7.7.0
     container_name: igavin-logstash
-    restart: always
     volumes:
       - ./elk/logstash/logstash-helloworld.conf:/usr/share/logstash/pipeline/logstash.conf #挂载logstash的配置文件
     ports:

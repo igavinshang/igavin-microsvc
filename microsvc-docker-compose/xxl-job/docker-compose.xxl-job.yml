@@ -2,7 +2,6 @@ version: '3'
 services:
   mysql:
     image: mysql:5.7
-    restart: always
     hostname: mysql
     container_name: xxl_job_db
     ports:
@@ -21,7 +20,6 @@ services:
 
   admin:
     image: xuxueli/xxl-job-admin:2.1.2
-    restart: always
     hostname: admin
     container_name: xxl_job
     ports:

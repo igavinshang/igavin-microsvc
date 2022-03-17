@@ -3,7 +3,8 @@ services:
   nacosstandalone:
     image: nacos/nacos-server:latest
     container_name: nacos
-
+    depends_on:
+      - mysql3307
     volumes:
       - "../data/nacos/logs/:/home/nacos/logs/"
       - "../data/nacos/data/:/home/nacos/data/"
