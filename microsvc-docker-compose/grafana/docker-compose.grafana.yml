@@ -8,14 +8,11 @@ services:
     environment:
       - “GF_SECURITY_ADMIN_PASSWORD=Gz2020@”
       - “GF_INSTALL_PLUGINS=alexanderzobnin-zabbix-app”
-    restart: "always"
     volumes:
-      - ./data/grafana/logs:/var/logs/grafana
+      - ../data/grafana/logs:/var/logs/grafana
       - /etc/localtime:/etc/localtime
     depends_on:
       - prometheus
-    networks:
-      - igavin-monitor
 
   prometheus:
     image: prom/prometheus:latest
@@ -30,8 +27,7 @@ services:
       - node-exporter
       - cadvisor
       - prometheus-webhook-alert
-    networks:
-      - igavin-monitor
+
 
   prometheus-webhook-alert:
     image: timonwong/prometheus-webhook-dingtalk
@@ -42,8 +38,7 @@ services:
       - ./grafana/alertmanager/dingtalk-config.yml:/etc/prometheus-webhook-dingtalk/config.yml
     ports:
       - "8060:8060"
-    networks:
-      - igavin-monitor
+
   alertmanager:
     image: prom/alertmanager
     container_name: igavin-alertmanager
@@ -53,8 +48,7 @@ services:
       - /etc/localtime:/etc/localtime
     ports:
       - "9093:9093"
-    networks:
-      - igavin-monitor
+
   cadvisor:
     image: google/cadvisor:latest
     container_name: igavin-cadvisor
@@ -67,17 +61,10 @@ services:
       - /etc/localtime:/etc/localtime
     ports:
       - "8080:8080"
-    networks:
-      - igavin-monitor
+
+
   node-exporter:
     image: prom/node-exporter:latest
     container_name: igavin-node-exporter
     ports:
       - "9100:9100"
-    networks:
-      - igavin-monitor
-
-
-networks:
-  igavin-monitor:
-    external: false

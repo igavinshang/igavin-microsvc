@@ -2,15 +2,15 @@ version: '3'
 services:
   mysql5.7:
     image: "mysql:5.7"
-    container_name: "igavin-mysql5.7"
+    container_name: "igavin-mysql-3306"
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: "root123"
       MYSQL_USER: "canal"
       MYSQL_PASSWORD: "canal123"
-      MYSQL_DATABASE: "test"
+      MYSQL_DATABASE: "canal_test_db"
     volumes:
-      - "./data/mysql:/var/lib/mysql"
+      - "../data/mysql:/var/lib/mysql"
       - "./mysql/conf/my.cnf:/etc/my.cnf"
     ports:
       - "3306:3306"
@@ -29,14 +29,8 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - ./data/elasticsearch/data:/usr/share/elasticsearch/data
-      - ./data/elasticsearch/logs:/usr/share/elasticsearch/logs
-    networks:
-      - igavin-net
+      - ../data/elasticsearch/data:/usr/share/elasticsearch/data
+      - ../data/elasticsearch/logs:/usr/share/elasticsearch/logs
     ports:
       - 9200:9200
       - 9300:9300
-
-networks:
-  igavin-net:
-    external: false

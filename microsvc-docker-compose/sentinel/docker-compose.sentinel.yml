@@ -9,4 +9,4 @@ services:
     ports: #避免出现端口映射错误，建议采用字符串格式 8080端口为Dockerfile中EXPOSE端口
       - 8858:8858
     volumes:
-      - ./data/sentinel/logs:/root/logs
+      - ../data/sentinel/logs:/root/logs

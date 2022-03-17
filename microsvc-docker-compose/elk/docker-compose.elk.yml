@@ -3,7 +3,6 @@ services:
   kibana:
     image: docker.elastic.co/kibana/kibana:7.10.1
     container_name: igavin-kibana
-    restart: always
     environment:
       # 名称，随便起
       SERVER_NAME: kibana
@@ -11,18 +10,16 @@ services:
       # es地址
       ELASTICSEARCH_HOSTS: "http://elasticsearch:9200"
     volumes:
-      - ./data/kibana/logs:/var/logs/kibana
+      - ../data/kibana/logs:/var/logs/kibana
     ports:
       - 5601:5601
     depends_on:
       - elasticsearch
-    networks:
-      - igavin-net
+
 
   logstash:
     image: docker.elastic.co/logstash/logstash:7.7.0
     container_name: igavin-logstash
-    restart: always
     volumes:
       - ./elk/logstash/logstash-helloworld.conf:/usr/share/logstash/pipeline/logstash.conf #挂载logstash的配置文件
     ports:
@@ -30,5 +27,4 @@ services:
       - 5044:5044
     depends_on:
       - elasticsearch
-    networks:
-      - igavin-net
+
