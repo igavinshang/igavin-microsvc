@@ -21,7 +21,9 @@
 如果Logstash需要添加插件，那就全部服务器的Logstash都要添加插件，扩展性差。
 所以就有了FileBeat，占用资源少，只负责采集日志，不做其他的事情，这样就轻量级，把Logstash抽出来，做一些滤处理之类的工作。*
 
-
+#### 示例
+1. filebeat.yml中配置多文件目录采集，以及日志等级标签
+2. logstash.conf中配置根据日志标签分开output到不同的index
 
 #####  filebeat 安装通过brew安装启动流程
 
@@ -43,4 +45,5 @@ igavinshang@igavin-macpro filebeat % /usr/local/bin/filebeat -e -c filebeat.yml
 ```
 
 #### 启动地址
+
 http://localhost:5601/app/kibana
