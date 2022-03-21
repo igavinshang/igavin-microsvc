@@ -14,7 +14,7 @@
 分布式事务seata，
 mysql数据同步canal，
 任务调度xxl-job。
-使用spring cloud最简单话实现组件使用示例。持续中...
+使用spring cloud最简单程度实现组件使用示例。持续中...
 ```
 
 ### 项目
