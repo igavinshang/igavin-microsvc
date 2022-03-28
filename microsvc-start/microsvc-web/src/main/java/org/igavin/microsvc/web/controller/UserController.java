@@ -16,16 +16,18 @@ public class UserController {
   @Autowired
   private UserService userService;
 
-  @GetMapping("/db/{id}")
+  @GetMapping("/username/{id}")
   public String getUserNameById(@PathVariable("id") Long id) {
 
-    logger.info("get-microsvc-web/db/"+id);
+    logger.info("microsvc-web/username/"+id);
     return userService.getTopOne();
   }
 
 
   @RequestMapping("/echo")
   public String echo() {
-     return "helloworld";
+    String msg = "microsvc-web/echo:helloworld";
+    logger.info(msg);
+    return msg;
   }
 }
